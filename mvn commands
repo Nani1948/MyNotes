@@ -292,7 +292,10 @@ mvn test -Pdev:
 Runs tests using the dev profile.
 10. Running Failed Tests
 TestNG can rerun failed tests using a testng-failed.xml file generated after a test run:
-
 mvn test -DsuiteXmlFile=testng-failed.xml:
 Executes the failed tests using the testng-failed.xml file generated in the target directory.
 These commands and configurations help to customize and streamline the execution of TestNG tests within a Maven-based project, making it easier to integrate with CI/CD pipelines, run specific tests, and generate detailed reports.
+
+
+
+
