@@ -188,3 +188,111 @@ mvn test -Dcucumber.options="--strict":
 Enforces strict mode, where any undefined or pending steps will cause the test to fail.
 
 These commands provide flexibility in running and customizing Cucumber test executions, making it easier for QA testers to integrate testing with CI/CD pipelines, filter tests, and generate detailed reports.
+Testng:
+TestNG is a popular testing framework for Java that provides robust capabilities for creating, managing, and running tests. Below are some essential Maven commands and configurations specifically for TestNG in a real-time testing environment:
+
+1. Running TestNG Tests
+mvn test:
+This command will run all the tests that are configured with TestNG in the project. Maven uses the maven-surefire-plugin by default to execute the tests.
+
+mvn test -DsuiteXmlFile=testng.xml:
+Runs a specific TestNG suite file. Replace testng.xml with the path to your suite file. The testng.xml file allows you to specify which classes, methods, or packages to include in your test run.
+
+mvn test -Dtest=TestClassName:
+Executes tests for a specific test class. Replace TestClassName with the name of your test class.
+
+mvn test -Dtest=TestClassName#testMethodName:
+Runs a specific method from a particular test class. Replace TestClassName with your test class and testMethodName with the method name.
+
+2. Running TestNG Groups
+mvn test -Dgroups="groupName":
+Executes only the tests that belong to a particular group. Replace groupName with the name of your TestNG group (e.g., smoke, regression, etc.). This is useful for selectively running test categories.
+
+mvn test -DexcludedGroups="groupName":
+Runs all tests except those in the specified group.
+
+3. Skipping Tests
+mvn install -DskipTests:
+Skips running the tests during the Maven install phase. Use this when you want to build your project without running any tests.
+
+mvn clean package -Dmaven.test.skip=true:
+Skips the test phase during the packaging process. Similar to the above command, but it can be applied during the package phase.
+
+4. Running Tests in Parallel
+TestNG supports parallel test execution, which can be configured either in the testng.xml file or via Maven command line.
+
+mvn test -Ddataproviderthreadcount=4:
+This sets the number of threads for tests that use data providers in TestNG. Replace 4 with the desired number of threads.
+
+Using testng.xml: If you have parallel configurations in testng.xml:
+
+xml
+Copy code
+<suite name="ParallelSuite" parallel="tests" thread-count="4">
+    <test name="Test1">
+        <classes>
+            <class name="com.example.TestClass"/>
+        </classes>
+    </test>
+</suite>
+You can run this with mvn test -DsuiteXmlFile=testng.xml.
+
+5. Generating TestNG Reports
+mvn surefire-report:report:
+Generates an HTML report for TestNG tests using the Maven Surefire plugin. It is useful for viewing the results in a more readable format.
+
+mvn site:
+This command generates a site with reports, including TestNG results, if configured in the pom.xml. It can include Surefire reports and other project documentation.
+
+6. Running Tests with Maven Surefire Plugin Configuration
+To execute TestNG tests with Maven, you usually configure the maven-surefire-plugin in your pom.xml:
+
+xml
+Copy code
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.0.0</version>
+    <configuration>
+        <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+        </suiteXmlFiles>
+    </configuration>
+</plugin>
+With this setup, running mvn test will automatically execute tests based on the configurations in testng.xml.
+
+7. Running Tests with Profile
+mvn test -PprofileName:
+Executes tests using a specific Maven profile that might include different configurations for TestNG. Useful when running tests with different parameters or environments (e.g., dev, qa, staging).
+8. Debugging and Logging
+mvn test -Dtest=TestClassName -X:
+Runs tests with debug logs. Replace TestClassName with your test class name. The -X flag enables detailed logging, which helps in debugging issues.
+9. Running Tests with Environment-Specific Properties
+If you have different environment-specific properties files (e.g., dev, qa, prod), you can use profiles in Maven to specify which environment configuration to use:
+
+xml
+Copy code
+<profiles>
+    <profile>
+        <id>dev</id>
+        <properties>
+            <env>dev</env>
+        </properties>
+    </profile>
+    <profile>
+        <id>qa</id>
+        <properties>
+            <env>qa</env>
+        </properties>
+    </profile>
+</profiles>
+Run a specific profile:
+
+mvn test -Pdev:
+Runs tests using the dev profile.
+10. Running Failed Tests
+TestNG can rerun failed tests using a testng-failed.xml file generated after a test run:
+
+mvn test -DsuiteXmlFile=testng-failed.xml:
+Executes the failed tests using the testng-failed.xml file generated in the target directory.
+These commands and configurations help to customize and streamline the execution of TestNG tests within a Maven-based project, making it easier to integrate with CI/CD pipelines, run specific tests, and generate detailed reports.
