@@ -1,1 +1,196 @@
+1. Basic Navigation and File Management
+pwd:
+Displays the present working directory.
 
+ls:
+Lists files and directories in the current directory. Use ls -l for detailed information or ls -a to include hidden files.
+
+cd <directory>:
+Changes the current directory to the specified one.
+
+mkdir <directory>:
+Creates a new directory.
+
+rmdir <directory>:
+Removes an empty directory.
+
+rm <file>:
+Removes a file. Use rm -r <directory> to delete a directory and its contents.
+
+cp <source> <destination>:
+Copies files or directories.
+
+mv <source> <destination>:
+Moves or renames files or directories.
+
+touch <filename>:
+Creates an empty file or updates the timestamp of an existing file.
+
+cat <file>:
+Displays the contents of a file. Useful for quickly checking log files or configuration files.
+
+more <file> / less <file>:
+Displays file content page by page, allowing you to scroll through large files.
+
+head <file>:
+Displays the first 10 lines of a file. Use head -n <number> to specify a different number of lines.
+
+tail <file>:
+Displays the last 10 lines of a file. Use tail -f <file> to follow the file, which is particularly useful for monitoring logs in real time.
+
+2. Searching and Filtering
+grep <pattern> <file>:
+Searches for a pattern in a file and displays matching lines. Use grep -i for case-insensitive search, grep -r to search recursively in directories, and grep -v to exclude matches.
+
+find <directory> -name <filename>:
+Finds files or directories by name. Useful for locating test data or scripts.
+
+awk '{print $1}' <file>:
+Processes and extracts fields from files. Often used for parsing logs and extracting specific information.
+
+sed 's/old/new/g' <file>:
+Performs search and replace in files. This is useful for editing configuration files or modifying test data.
+
+3. File Permissions and Ownership
+chmod <permissions> <file>:
+Changes file permissions (e.g., chmod 755 file.sh).
+
+chown <user>:<group> <file>:
+Changes the ownership of a file or directory.
+
+ls -l:
+Lists files with details including permissions, ownership, and size.
+
+4. Network and Connectivity
+ping <hostname>:
+Checks the connectivity to a server. Useful for verifying if a service is reachable.
+
+ifconfig:
+Displays network configuration, including IP addresses.
+
+netstat -an:
+Displays active network connections, listening ports, and routing tables.
+
+curl <url>:
+Fetches the content of a URL. Useful for testing API endpoints or checking web service responses. Use curl -X GET, curl -X POST, etc., for different HTTP methods.
+
+wget <url>:
+Downloads files from the internet. It is handy for downloading test data or packages.
+
+scp <source> <user>@<host>:<destination>:
+Securely copies files between hosts. Useful for transferring test scripts or logs between servers.
+
+ssh <user>@<hostname>:
+Securely connects to a remote server. Useful for accessing test environments or cloud servers.
+
+5. Process Management
+ps -ef:
+Displays all running processes. Use ps aux for an alternative format.
+
+top:
+Displays real-time system resource usage, including CPU and memory usage. Useful for monitoring the performance of test environments.
+
+kill <pid>:
+Kills a process by its Process ID (PID). Use kill -9 <pid> for a forceful termination.
+
+pkill <process_name>:
+Terminates processes by name.
+
+6. Disk Usage and System Monitoring
+df -h:
+Displays disk space usage in a human-readable format.
+
+du -sh <directory>:
+Shows the size of a directory.
+
+free -h:
+Displays memory usage in a human-readable format.
+
+uptime:
+Shows how long the system has been running.
+
+dmesg:
+Displays system messages, which can be useful for debugging hardware and kernel-related issues.
+
+7. Working with Archives
+tar -czvf <archive_name>.tar.gz <directory>:
+Compresses a directory into a .tar.gz archive.
+
+tar -xzvf <archive_name>.tar.gz:
+Extracts a .tar.gz archive.
+
+zip -r <archive_name>.zip <directory>:
+Creates a .zip archive of a directory.
+
+unzip <archive_name>.zip:
+Extracts a .zip archive.
+
+8. Scheduling Tasks
+crontab -e:
+Edits the cron jobs for scheduling tasks. This can automate running scripts or backups.
+
+crontab -l:
+Lists all scheduled cron jobs.
+
+9. Viewing and Analyzing Logs
+tail -f /path/to/logfile:
+Follows a log file in real time. Very useful for debugging issues as they happen.
+
+grep "ERROR" /path/to/logfile:
+Searches for specific error messages in logs.
+
+10. Version Control (Git)
+git clone <repository_url>:
+Clones a repository from a remote source.
+
+git pull:
+Fetches and merges changes from the remote repository.
+
+git add .:
+Stages all changes for the next commit.
+
+git commit -m "message":
+Commits staged changes with a message.
+
+git push:
+Pushes local commits to the remote repository.
+
+11. Text Manipulation
+sort <file>:
+Sorts the lines in a file.
+
+uniq:
+Removes duplicate lines from a sorted file. Often used with sort.
+
+cut -d "delimiter" -f <field_number> <file>:
+Extracts specific fields from a file. Useful for CSV files or logs with a consistent delimiter.
+
+12. Working with Environment Variables
+export VAR_NAME=value:
+Sets an environment variable for the current session.
+
+echo $VAR_NAME:
+Displays the value of an environment variable.
+
+env:
+Displays all environment variables.
+
+13. Monitoring and Automation
+watch -n 5 'command':
+Runs a command every 5 seconds and displays the output. Useful for monitoring processes or file changes.
+
+nohup command &:
+Runs a command in the background and allows it to continue running even after logging out.
+
+14. Permission and User Management
+sudo <command>:
+Runs a command as a superuser.
+
+useradd <username>:
+Adds a new user.
+
+passwd <username>:
+Changes the password for a user.
+
+su <username>:
+Switches to another user.
